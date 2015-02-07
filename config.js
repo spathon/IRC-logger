@@ -14,9 +14,7 @@ var _config = {
     password: 'patrik',
     database: 'irc'
   },
-  channels: ['#wordpress', '#wordpress-dev', '#Node.js', '#archlinux',
-        '#ubuntu', '#docker', '#freenode', '#bitcoin', '#python',
-        '#go-nuts', '#git']
+  channels: ['#Node.js']
 };
 
 
