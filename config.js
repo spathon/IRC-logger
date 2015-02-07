@@ -14,7 +14,7 @@ var _config = {
     password: 'patrik',
     database: 'irc'
   },
-  channels: ['#Node.js']
+  channels: []
 };
 
 
