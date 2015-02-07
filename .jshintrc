@@ -1,0 +1,8 @@
+{
+  "node": true,
+
+  // Custom Globals
+  "globals": {
+
+  }
+}
