@@ -4,3 +4,13 @@ block content
 
   h1 IRC Logger
   p Keep track on what's beeing said on IRC when your offline.
+
+  if messages
+    ul
+      each message in messages
+        li(class = message.mention ? 'mention' : '')
+          .meta
+            span.date= moment(message.created_at).fromNow()
+            |  -&nbsp;
+            span.user= message.from
+          .message= message.message
