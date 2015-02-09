@@ -2,13 +2,15 @@ extends layout
 
 block content
 
-  h1 IRC Logger
-  p Keep track on what's beeing said on IRC when your offline.
+  .header
+    h1 IRC Logger
+    p Keep track on what's beeing said on IRC when your offline.
 
   if messages
     ul.messages-list
       each message in messages
-        li.item(class = message.mention ? 'mention' : '')
-          .user= message.from
+        li.item.clearfix(class = message.mention ? 'mention' : '')
+          .meta
+            .user= message.from
+            .date= moment(message.created_at).fromNow()
           .message= message.message
-          .date= moment(message.created_at).fromNow()
