@@ -14,3 +14,6 @@ block content
             .user= message.from
             .date= moment(message.created_at).fromNow()
           .message= message.message
+
+  form#add_message_form.add-message-wrap
+    input#the_message(placeholder="Add message", required)
