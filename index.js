@@ -1,3 +1,5 @@
+'use strict';
+
 var config       = require('./config'),
     express      = require('express'),
     path         = require('path'),
@@ -6,8 +8,22 @@ var config       = require('./config'),
     cookieParser = require('cookie-parser'),
     bodyParser   = require('body-parser'),
 
+    // IRC inside sockets?
     irc_client   = require('./lib/irc'),
-    app          = express();
+    app          = express(),
+    server       = require('http').Server(app),
+    io           = require('socket.io')(server);
+
+
+
+/*=============================================*\
+  Start the Express server
+\*=============================================*/
+
+app.set('port', process.env.PORT || 1988);
+server.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + server.address().port);
+});
 
 
 
@@ -39,10 +55,24 @@ app.use('/', routes);
 
 
 /*=============================================*\
+  Socket.io
+\*=============================================*/
+
+io.on('connection', function (socket) {
+  socket.on('add message', function (data) {
+    // @todo select channel if more than one and error if none
+    irc_client.say(config.channels[0], data);
+  });
+});
+
+
+
+
+/*=============================================*\
   Start the Express server
 \*=============================================*/
 
-app.set('port', process.env.PORT || 1988);
-var server = app.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + server.address().port);
-});
+// app.set('port', process.env.PORT || 1988);
+// var server = app.listen(app.get('port'), function() {
+//   console.log('Express server listening on port ' + server.address().port);
+// });

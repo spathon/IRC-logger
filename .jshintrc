@@ -3,6 +3,6 @@
 
   // Custom Globals
   "globals": {
-
+    "io": true
   }
 }
